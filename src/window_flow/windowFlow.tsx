@@ -38,6 +38,16 @@ export const WindowFlow = ()=>{
     const onConnect = useCallback(
         (params:Connection)=> setEdges((eds)=>addEdge({...params,animated:true},eds)),[setEdges]
     )
+    const addNodes = ()=>{
+        const newNode:Node ={
+            id:`${nodes.length+1}`,
+            data:{
+                label:`Node ${nodes.length+1}`
+            },
+            position:{x:Math.random()*400,y:Math.random()*400}
+        }
+        setNodes((params)=>[...params,newNode])
+    }
     
     return(
        <div className="flex flex-col h-screen w-screen bg-slate-50">
@@ -46,7 +56,7 @@ export const WindowFlow = ()=>{
             <h1 className="text-xl font-bold text-slate-800">Flow Editor</h1>
         </header>
         <div className="flex justify-end px-6 pt-4">
-            <button className="bg-black text-white px-4 py-2 rounded shadow-md hover:bg-zinc-800 transition-colors">
+            <button onClick={addNodes} className="bg-black text-white px-4 py-2 rounded shadow-md hover:bg-zinc-800 transition-colors">
                 Add New Node
             </button>
         </div>
