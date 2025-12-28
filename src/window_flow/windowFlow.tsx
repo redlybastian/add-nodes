@@ -1,4 +1,4 @@
-import { Background, BackgroundVariant, Controls, ReactFlow, type Edge, type Node } from "@xyflow/react"
+import { Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState, type Edge, type Node } from "@xyflow/react"
 
 
 
@@ -16,6 +16,12 @@ const initialNode :Node[]=[
             label:"Node 2"
         },
         position:{x:100,y:200}
+    }, {
+        id:'3',
+        data:{
+            label:"Node 3"
+        },
+        position:{x:300,y:200}
     }
 ]
 
@@ -25,6 +31,10 @@ const initialEdges:Edge[] = [
     }
 ]
 export const WindowFlow = ()=>{
+    const [nodes,setNodes,onNodesChange]=useNodesState(initialNode)
+    const [edges,setEdges,onEdgesChange]=useEdgesState(initialEdges)
+
+    
     return(
        <div className="flex flex-col h-screen w-screen bg-slate-50">
       {/* Header Styled with Tailwind */}
@@ -39,8 +49,10 @@ export const WindowFlow = ()=>{
         >
           <ReactFlow 
             fitView 
-            nodes={initialNode} 
-            edges={initialEdges}
+            nodes={nodes} 
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
           >
             {/* Explicitly defined Background */}
             <Background gap={40} size={1} variant={BackgroundVariant.Lines} color="#f1f5f9" />
