@@ -1,9 +1,11 @@
-@import "tailwindcss";
-@import "@xyflow/react/dist/style.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Force a light background on the body to override Vite defaults */
 @layer base {
   body {
-    @apply bg-white text-black;
+    background-color: white !important;
+    color: black;
+    margin: 0;
   }
 }
