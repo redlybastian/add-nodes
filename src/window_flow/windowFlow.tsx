@@ -1,4 +1,5 @@
-import { Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState, type Edge, type Node } from "@xyflow/react"
+import { addEdge, Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState, type Connection, type Edge, type Node } from "@xyflow/react"
+import { useCallback } from "react"
 
 
 
@@ -34,6 +35,9 @@ export const WindowFlow = ()=>{
     const [nodes,setNodes,onNodesChange]=useNodesState(initialNode)
     const [edges,setEdges,onEdgesChange]=useEdgesState(initialEdges)
 
+    const onConnect = useCallback(
+        (params:Connection)=> setEdges((eds)=>addEdge({...params,animated:true},eds)),[setEdges]
+    )
     
     return(
        <div className="flex flex-col h-screen w-screen bg-slate-50">
@@ -53,6 +57,7 @@ export const WindowFlow = ()=>{
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
           >
             {/* Explicitly defined Background */}
             <Background gap={40} size={1} variant={BackgroundVariant.Lines} color="#f1f5f9" />
