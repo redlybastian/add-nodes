@@ -42,9 +42,14 @@ export const WindowFlow = ()=>{
     return(
        <div className="flex flex-col h-screen w-screen bg-slate-50">
       {/* Header Styled with Tailwind */}
-      <header className="p-4 bg-white border-b shadow-sm">
-        <h1 className="text-xl font-bold text-slate-800">Flow Editor</h1>
-      </header>
+        <header className="p-4 bg-white border-b shadow-sm">
+            <h1 className="text-xl font-bold text-slate-800">Flow Editor</h1>
+        </header>
+        <div className="flex justify-end px-6 pt-4">
+            <button className="bg-black text-white px-4 py-2 rounded shadow-md hover:bg-zinc-800 transition-colors">
+                Add New Node
+            </button>
+        </div>
 
       {/* Main Flow Area */}
       <main className="flex-grow flex items-center justify-center p-6">
